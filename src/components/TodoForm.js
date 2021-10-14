@@ -40,7 +40,6 @@ function TodoForm(props) {
             onChange={handleChange}
             name="text"
             className="todo-input"
-            t
           />
           <button onClick={handleSubmit} className="todo-button">
             Add todo
