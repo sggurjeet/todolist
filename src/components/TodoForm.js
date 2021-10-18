@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : "");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -9,14 +14,16 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const count = 0;
+    //const count = Math.floor(Math.random * 100);
     props.onSubmit({
-      id: count + 1,
+      id: Math.floor(Math.random() * 100),
       text: input,
     });
     setInput("");
   };
-
+  // const alertAway = () => {
+  //   console.log("enter what todo bro");
+  // };
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       {props.edit ? (
@@ -26,6 +33,7 @@ function TodoForm(props) {
             value={input}
             onChange={handleChange}
             name="text"
+            ref={inputRef}
             className="todo-input edit"
           />
           <button onClick={handleSubmit} className="todo-button edit">
@@ -37,13 +45,20 @@ function TodoForm(props) {
           <input
             placeholder="Add a todo"
             value={input}
+            // onBlur={alertAway}
             onChange={handleChange}
             name="text"
+            ref={inputRef}
             className="todo-input"
           />
           <button onClick={handleSubmit} className="todo-button">
             Add todo
           </button>
+          <div className="todo-filter">
+            <button>All Tasks</button>
+            <button>Active Tasks</button>
+            <button>Completed Tasks</button>
+          </div>
         </>
       )}
     </form>

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
+import TodoModal from "./TodoModal";
 import Todo from "./Todo";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
-
+  const [edit, setEdit] = useState({
+    id: "",
+    value: "",
+  });
+  // const [completed, setCompleted] = useState({ complete: true });
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
@@ -12,7 +17,7 @@ function TodoList() {
 
     const newTodos = [todo, ...todos];
 
-    setTodos(newTodos);
+    setTodos(newTodos); //async function, useEffect to display the first data
     console.log(...todos);
   };
 
@@ -31,15 +36,25 @@ function TodoList() {
 
     setTodos(removedArr);
   };
+  const editOnClick = (todo) => {
+    setEdit({ id: todo.id, value: todo.text });
+  };
+  // const completeTodo = (id) => {
+  //   let newTodos = todos.map((todo) => {
+  //     if (todo.id === id) {
+  //       todo.isComplete = !todo.isComplete;
+  //     }
+  //     return todo;
+  //   });
+  //   setTodos(newTodos);
+  // };
 
-  const completeTodo = (id) => {
-    let updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
+  const submitUpdate = (value) => {
+    updateTodo(edit.id, value);
+    setEdit({
+      id: null,
+      value: "",
     });
-    setTodos(updatedTodos);
   };
 
   return (
@@ -48,10 +63,12 @@ function TodoList() {
       <TodoForm onSubmit={addTodo} />
       <Todo
         todos={todos}
-        completeTodo={completeTodo}
+        // completeTodo={completeTodo}
         removeTodo={removeTodo}
         updateTodo={updateTodo}
+        editOnClick={editOnClick}
       />
+      {edit.id && <TodoModal edit={edit} onSubmit={submitUpdate} />}
     </>
   );
 }
