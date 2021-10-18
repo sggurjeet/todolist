@@ -9,7 +9,7 @@ function TodoList() {
     id: "",
     value: "",
   });
-  // const [completed, setCompleted] = useState({ complete: true });
+
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;

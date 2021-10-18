@@ -1,5 +1,4 @@
 import React from "react";
-// import TodoForm from "./TodoForm";
 
 const Todo = ({ todos, completeTodo, removeTodo, editOnClick, updateTodo }) => {
   return todos.map((todo, index) => (
