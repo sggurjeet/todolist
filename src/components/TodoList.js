@@ -39,15 +39,7 @@ function TodoList() {
   const editOnClick = (todo) => {
     setEdit({ id: todo.id, value: todo.text });
   };
-  // const completeTodo = (id) => {
-  //   let newTodos = todos.map((todo) => {
-  //     if (todo.id === id) {
-  //       todo.isComplete = !todo.isComplete;
-  //     }
-  //     return todo;
-  //   });
-  //   setTodos(newTodos);
-  // };
+ 
 
   const submitUpdate = (value) => {
     updateTodo(edit.id, value);
@@ -63,7 +55,6 @@ function TodoList() {
       <TodoForm onSubmit={addTodo} />
       <Todo
         todos={todos}
-        // completeTodo={completeTodo}
         removeTodo={removeTodo}
         updateTodo={updateTodo}
         editOnClick={editOnClick}
