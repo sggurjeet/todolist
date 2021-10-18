@@ -11,3 +11,5 @@ function App() {
 }
 
 export default App;
+//auto focus to bring focus as soon as app open
+//second method is useRef

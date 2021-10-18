@@ -9,14 +9,16 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const count = 0;
+    //const count = Math.floor(Math.random * 100);
     props.onSubmit({
-      id: count + 1,
+      id: Math.floor(Math.random() * 100),
       text: input,
     });
     setInput("");
   };
-
+  // const alertAway = () => {
+  //   console.log("enter what todo bro");
+  // };
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       {props.edit ? (
@@ -37,14 +39,19 @@ function TodoForm(props) {
           <input
             placeholder="Add a todo"
             value={input}
+            // onBlur={alertAway}
             onChange={handleChange}
             name="text"
             className="todo-input"
-            t
           />
           <button onClick={handleSubmit} className="todo-button">
             Add todo
           </button>
+          <div className="todo-filter">
+            <button>All Tasks</button>
+            <button>Active Tasks</button>
+            <button>Completed Tasks</button>
+          </div>
         </>
       )}
     </form>
