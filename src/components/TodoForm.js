@@ -9,7 +9,7 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //const count = Math.floor(Math.random * 100);
+
     props.onSubmit({
       id: Math.floor(Math.random() * 100),
       text: input,
@@ -17,9 +17,10 @@ function TodoForm(props) {
     });
     setInput("");
   };
-  // const alertAway = () => {
-  //   console.log("enter what todo bro");
-  // };
+
+  const alertAway = () => {
+    console.log("enter what todo bro");
+  };
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       {props.edit ? (
@@ -40,7 +41,7 @@ function TodoForm(props) {
           <input
             placeholder="Add a todo"
             value={input}
-            // onBlur={alertAway}
+            onBlur={alertAway}
             onChange={handleChange}
             name="text"
             className="todo-input"

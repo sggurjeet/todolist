@@ -22,7 +22,7 @@ function TodoList() {
     const newTodos = [todo, ...todos];
 
     setTodos(newTodos); //async function, useEffect to display the first data
-    console.log(...todos);
+    console.log(todo);
   };
 
   const updateTodo = (todoId, newValue) => {

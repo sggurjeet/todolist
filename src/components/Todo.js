@@ -1,13 +1,6 @@
 import React from "react";
 
-const Todo = ({
-  todos,
-  complete,
-  removeTodo,
-  editOnClick,
-  updateTodo,
-  changeStatus,
-}) => {
+const Todo = ({ todos, removeTodo, editOnClick, changeStatus }) => {
   return todos.map((todo, index) => (
     <div key={index}>
       <div>
