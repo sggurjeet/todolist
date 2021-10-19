@@ -13,6 +13,7 @@ function TodoForm(props) {
     props.onSubmit({
       id: Math.floor(Math.random() * 100),
       text: input,
+      complete: false,
     });
     setInput("");
   };
@@ -47,11 +48,6 @@ function TodoForm(props) {
           <button onClick={handleSubmit} className="todo-button">
             Add todo
           </button>
-          <div className="todo-filter">
-            <button>All Tasks</button>
-            <button>Active Tasks</button>
-            <button>Completed Tasks</button>
-          </div>
         </>
       )}
     </form>

@@ -1,17 +1,27 @@
 import React from "react";
 
-const Todo = ({ todos, completeTodo, removeTodo, editOnClick, updateTodo }) => {
+const Todo = ({
+  todos,
+  complete,
+  removeTodo,
+  editOnClick,
+  updateTodo,
+  changeStatus,
+}) => {
   return todos.map((todo, index) => (
-    <div
-      className={todo.isComplete ? "todo-row complete" : "todo-row"}
-      key={index}
-    >
-      {/* <div>
-        <input key={todo.id} type="checkbox" defaultChecked={false} />
-      </div> */}
-      <div key={todo.id} onDoubleClick={() => completeTodo(todo.id)}>
+    <div key={index}>
+      <div>
+        <input
+          key={todo.id}
+          type="checkbox"
+          checked={todo.complete}
+          onChange={() => changeStatus(todo.id)}
+        />
         {todo.text}
       </div>
+      {/* <div key={todo.id} onDoubleClick={() => completeTodo(todo.id)}>
+        {todo.text}
+      </div> */}
       <div className="icons">
         <button onClick={() => removeTodo(todo.id)} className="delete-icon">
           Delete
