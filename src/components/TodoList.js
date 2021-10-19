@@ -13,7 +13,7 @@ function TodoList() {
     value: "",
   });
   const [taskFilter, setTaskFilter] = useState("");
-
+  // Add a new todo
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
@@ -24,7 +24,7 @@ function TodoList() {
     setTodos(newTodos); //async function, useEffect to display the first data
     console.log(todo);
   };
-
+  // Update a task
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
@@ -34,12 +34,13 @@ function TodoList() {
       prev.map((item) => (item.id === todoId ? newValue : item))
     );
   };
-
+  // Remove a task
   const removeTodo = (id) => {
     const removedArr = [...todos].filter((todo) => todo.id !== id);
 
     setTodos(removedArr);
   };
+  //Edit a task open in a new modal
   const editOnClick = (todo) => {
     setEdit({ id: todo.id, value: todo.text });
   };
