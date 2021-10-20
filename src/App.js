@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="todo-app">
+    <div className="todoapp">
       <TodoList />
     </div>
   );
@@ -13,3 +13,4 @@ function App() {
 export default App;
 //auto focus to bring focus as soon as app open
 //second method is useRef
+//used the autofocus method instead of useRef

@@ -1,9 +1,10 @@
 import React from "react";
+import { MdDelete, MdEditNote } from "react-icons/md";
 
 const Todo = ({ todos, removeTodo, editOnClick, changeStatus }) => {
   return todos.map((todo, index) => (
-    <div key={index}>
-      <div>
+    <div className="new-todo" key={index}>
+      <div className="edit">
         <input
           key={todo.id}
           type="checkbox"
@@ -11,18 +12,12 @@ const Todo = ({ todos, removeTodo, editOnClick, changeStatus }) => {
           onChange={() => changeStatus(todo.id)}
         />
         {todo.text}
+        <MdDelete className="delete-icon" onClick={() => removeTodo(todo.id)} />
+        <MdEditNote className="edit-icon" onClick={() => editOnClick(todo)} />
       </div>
       {/* <div key={todo.id} onDoubleClick={() => completeTodo(todo.id)}>
         {todo.text}
       </div> */}
-      <div className="icons">
-        <button onClick={() => removeTodo(todo.id)} className="delete-icon">
-          Delete
-        </button>
-        <button onClick={() => editOnClick(todo)} className="edit-icon">
-          Edit
-        </button>
-      </div>
     </div>
   ));
 };

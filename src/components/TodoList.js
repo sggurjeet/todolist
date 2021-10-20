@@ -72,28 +72,38 @@ function TodoList() {
   };
 
   return (
-    <>
-      <h1>What's the Plan for Today?</h1>
-      <TodoForm onSubmit={addTodo} />
-      {Object.keys(filterOBJ).map((key) => (
-        <FilterButton
-          key={key}
-          name={key}
-          onClick={() => setTaskFilter(filterOBJ[key])}
-        />
-      ))}
-      {/* <FilterButton name="All" onClick={() => setTaskFilter("")} />
+    <div>
+      <div className="todoapp h1">
+        <h1>Todos</h1>
+      </div>
+      <div>
+        <TodoForm onSubmit={addTodo} />
+
+        {/* <FilterButton name="All" onClick={() => setTaskFilter("")} />
       <FilterButton name="Active" onClick={() => setTaskFilter(false)} />
       <FilterButton name="Complete" onClick={() => setTaskFilter(true)} /> */}
-      <Todo
-        todos={formatTodo(taskFilter)}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
-        editOnClick={editOnClick}
-        changeStatus={changeStatus}
-      />
-      {edit.id && <TodoModal edit={edit} onSubmit={submitUpdate} />}
-    </>
+        <Todo
+          todos={formatTodo(taskFilter)}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+          editOnClick={editOnClick}
+          changeStatus={changeStatus}
+        />
+        <div className="todo-task-btn">
+          {todos.length
+            ? Object.keys(filterOBJ).map((key) => (
+                <FilterButton
+                  key={key}
+                  name={key}
+                  onClick={() => setTaskFilter(filterOBJ[key])}
+                />
+              ))
+            : null}
+        </div>
+
+        {edit.id && <TodoModal edit={edit} onSubmit={submitUpdate} />}
+      </div>
+    </div>
   );
 }
 

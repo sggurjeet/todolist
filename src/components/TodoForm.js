@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+// import { MdAdd } from "react-icons/md";
 
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : "");
   const [errors, setError] = useState({});
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!input) {
+      inputRef.current.focus();
+    }
+  });
+
   const handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -45,7 +54,7 @@ function TodoForm(props) {
             value={input}
             onChange={handleChange}
             name="text"
-            autoFocus
+            autoFocus //focus on input field using autofocus property of html element
             className="todo-input edit"
           />
           <button onClick={handleSubmit} className="todo-button edit">
@@ -57,17 +66,15 @@ function TodoForm(props) {
           <input
             placeholder="Add a todo"
             value={input}
-            onBlur={validate}
+            // onBlur={validate}
             onChange={handleChange}
             name="text"
-            autoFocus
-            className="todo-input"
+            ref={inputRef} //focus on input field using useRef and useEffect hooks
+            className="new-todo"
           />
+          {/* <MdAdd onClick={handleSubmit} className="add-button" /> */}
           <br />
-          <div>{errors.text}</div>
-          <button onClick={handleSubmit} className="todo-button">
-            Add todo
-          </button>
+          <div className="todo-errors">{errors.text}</div>
         </>
       )}
     </form>
@@ -75,3 +82,5 @@ function TodoForm(props) {
 }
 
 export default TodoForm;
+
+//useRef is basically getelementdocumemntbyid
