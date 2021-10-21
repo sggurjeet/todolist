@@ -3,10 +3,12 @@ import TodoForm from "./TodoForm";
 import TodoModal from "./TodoModal";
 import Todo from "./Todo";
 import FilterButton from "./FilterButton";
+import { addTodoAction, removeTodoAction } from "../redux/actions";
+import { connect } from "react-redux";
 
 const filterOBJ = { All: "", Active: false, Completed: true };
 
-function TodoList() {
+function TodoList(props) {
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState({
     id: "",
@@ -21,9 +23,12 @@ function TodoList() {
 
     const newTodos = [todo, ...todos];
 
-    setTodos(newTodos); //async function, useEffect to display the first data
+    setTodos(newTodos);
+    props.addTodoAction(newTodos);
+    //async function, useEffect to display the first data
     console.log(todo);
   };
+
   // Update a task
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
@@ -39,7 +44,9 @@ function TodoList() {
     const removedArr = [...todos].filter((todo) => todo.id !== id);
 
     setTodos(removedArr);
+    props.removeTodoAction(removedArr);
   };
+
   //Edit a task open in a new modal
   const editOnClick = (todo) => {
     setEdit({ id: todo.id, value: todo.text });
@@ -52,6 +59,7 @@ function TodoList() {
       value: "",
     });
   };
+
   const changeStatus = (id) => {
     const todoIndex = todos.findIndex((todo) => todo.id === id);
     const localTodos = [...todos];
@@ -61,6 +69,7 @@ function TodoList() {
     };
     setTodos(localTodos);
   };
+
   const formatTodo = (filter) => {
     if (filter) {
       return todos.filter((todo) => todo.complete);
@@ -106,5 +115,15 @@ function TodoList() {
     </div>
   );
 }
-
-export default TodoList;
+const mapStateToProps = ({ reducer }) => {
+  return {
+    reducer: reducer,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodoAction: (todos) => dispatch(addTodoAction(todos)),
+    removeTodoAction: (id) => dispatch(removeTodoAction(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

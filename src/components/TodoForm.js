@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+
 // import { MdAdd } from "react-icons/md";
 
 function TodoForm(props) {
@@ -82,5 +83,5 @@ function TodoForm(props) {
 }
 
 export default TodoForm;
-
+//connect(mapStateToProps, mapDispatchToProps)
 //useRef is basically getelementdocumemntbyid
