@@ -66,7 +66,7 @@ function TodoForm(props) {
           <input
             placeholder="Add a todo"
             value={input}
-            // onBlur={validate}
+            onBlur={validate}
             onChange={handleChange}
             name="text"
             ref={inputRef} //focus on input field using useRef and useEffect hooks
