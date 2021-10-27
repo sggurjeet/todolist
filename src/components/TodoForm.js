@@ -56,11 +56,9 @@ function TodoForm(props) {
             onChange={handleChange}
             name="text"
             autoFocus //focus on input field using autofocus property of html element
-            className="todo-input edit"
+            className="new-todo "
           />
-          <button onClick={handleSubmit} className="todo-button edit">
-            Update
-          </button>
+          <button onClick={handleSubmit}>Update</button>
         </>
       ) : (
         <>

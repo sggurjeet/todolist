@@ -14,6 +14,7 @@ function TodoList(props) {
     id: "",
     value: "",
   });
+
   const [taskFilter, setTaskFilter] = useState("");
   // Add a new todo
   const addTodo = (todo) => {
@@ -39,6 +40,7 @@ function TodoList(props) {
       prev.map((item) => (item.id === todoId ? newValue : item))
     );
   };
+
   // Remove a task
   const removeTodo = (id) => {
     const removedArr = [...todos].filter((todo) => todo.id !== id);
